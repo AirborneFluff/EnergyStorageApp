@@ -1,0 +1,13 @@
+.floating-svg {
+  transform: scale(0.5) rotate(-25deg);
+  top: -25%;
+}
+
+input[type=file] {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  transform: scale(3);
+  opacity: 0;
+}
