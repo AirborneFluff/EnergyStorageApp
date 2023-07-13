@@ -1,0 +1,48 @@
+<div class="setup-page-container">
+  <div class="title-section">
+    <h1>Which of these is most important to you?</h1>
+  </div>
+  <div class="action-section">
+    <button class="capsule-button my-3" (click)="prioritySelection = 0" [ngClass]="{'button-success' : prioritySelection == 0}">Sticking to a budget</button>
+    <button class="capsule-button my-3" (click)="prioritySelection = 1" [ngClass]="{'button-success' : prioritySelection == 1}">Reducing my monthly bill</button>
+    <button class="capsule-button my-3" (click)="prioritySelection = 2" [ngClass]="{'button-success' : prioritySelection == 2}">Grid independence</button>
+    <button class="capsule-button my-3" (click)="prioritySelection = 3" [ngClass]="{'button-success' : prioritySelection == 3}">Quick payback time</button>
+  </div>
+  <div class="bottom-section">
+    <div class="info-section">
+      <p>We will recommend what size energy storage you could get. More storage means you’ll be pulling from the grid less often, but comes at a greater upfront cost</p>
+    </div>
+    <div class="nav-section">
+      <div class="position-dots">
+      </div>
+      <div class="btn-next">
+        <span class="btn-next-text">Calculate</span>
+        <div class="btn-next-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-next-svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="330" height="235" data-name="Layer 1" class="floating-svg">
+    <g>
+      <title>Layer 1</title>
+      <circle fill="#80ed99" r="10.941" cy="10.941" cx="10.941" data-name="Ellipse 457" id="e487db8f-4c3a-4358-81eb-d3bded3bc3da"/>
+      <path fill="#80ed99" d="m56.03001,5.276a5.6655,5.6655 0 0 0 0,11.331l267.08,0a5.666,5.666 0 0 0 0.186,-11.33l-0.186,0l-267.08,-0.001z" data-name="Path 40" id="befa8199-fde2-4595-b8af-7ec542e82337-386"/>
+      <circle fill="#80ed99" r="10.941" cy="64.083" cx="10.941" data-name="Ellipse 458" id="a758fd92-4e85-4c79-add3-fb6fc696c09d"/>
+      <path fill="#80ed99" d="m56.03001,58.418a5.6655,5.6655 0 1 0 0,11.331l267.08,0a5.666,5.666 0 1 0 0.28931,-11.3283q-0.05163,-0.00131 -0.1033,-0.0017l-0.186,0l-267.08001,-0.001z" data-name="Path 40-2" id="a37a06f1-eaa9-4a01-b953-86cff9fa81d3-387"/>
+      <circle fill="#e6e6e6" r="10.941" cy="117.224" cx="10.941" data-name="Ellipse 459" id="ac0f1b1c-068a-4871-a338-e6ba48051488"/>
+      <path fill="#e6e6e6" d="m56.03001,111.55901a5.6655,5.6655 0 1 0 0,11.331l267.08,0a5.666,5.666 0 0 0 0.28931,-11.32831q-0.05163,-0.0013 -0.1033,-0.00169l-0.186,0l-267.08001,-0.001z" data-name="Path 40-3" id="a4850c8e-a5f0-41e0-b9ec-5f0f83856b1d-388"/>
+      <circle fill="#80ed99" r="10.941" cy="170.36501" cx="10.941" data-name="Ellipse 460" id="a638f8ef-e148-4354-9dc8-e1896d8f3096"/>
+      <path fill="#80ed99" d="m56.03001,164.703a5.6655,5.6655 0 0 0 0,11.331l267.08,0a5.666,5.666 0 0 0 0.186,-11.33l-0.186,0l-267.08,-0.001z" data-name="Path 40-4" id="a7ff1bb5-53b2-44dc-85c4-b215571fc2ba-389"/>
+      <circle fill="#e6e6e6" r="10.941" cy="223.50701" cx="10.941" data-name="Ellipse 461" id="a897c583-e65f-4254-a57a-bb73aaaf39d3"/>
+      <path fill="#e6e6e6" d="m56.03001,217.84201a5.6655,5.6655 0 1 0 0,11.331l267.08,0a5.666,5.666 0 1 0 0.291,-11.32827q-0.0525,-0.00133 -0.105,-0.00171l-0.186,0l-267.08,-0.00102z" data-name="Path 40-5" id="b2eca06a-e605-4d26-a472-95d7e229fe7d-390"/>
+      <circle fill="#80ed99" r="10.941" cy="276.648" cx="10.941" data-name="Ellipse 462" id="fdd2d72e-2338-4227-921c-6caaa64befe0"/>
+      <path fill="#80ed99" d="m56.03001,270.983a5.6655,5.6655 0 0 0 0,11.331l267.08,0a5.666,5.666 0 1 0 0.291,-11.32828q-0.0525,-0.00133 -0.105,-0.00171l-0.186,0l-267.08,-0.00101z" data-name="Path 40-6" id="ba09c572-37b1-4e69-a482-664e89555f7a-391"/>
+      <circle fill="#e6e6e6" r="10.941" cy="329.79" cx="10.941" data-name="Ellipse 463" id="a8736793-bc89-415c-8e2a-39abf3ac3501"/>
+      <path fill="#e6e6e6" d="m56.03001,324.125a5.6655,5.6655 0 1 0 0,11.331l267.08,0a5.666,5.666 0 0 0 0.186,-11.33l-0.186,0l-267.08,-0.001z" data-name="Path 40-7" id="a2a8de98-be9e-4460-8a9d-e7919d941cd6-392"/>
+    </g>
+  </svg>
+</div>

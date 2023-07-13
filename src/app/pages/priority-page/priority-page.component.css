@@ -1,0 +1,6 @@
+.floating-svg {
+  transform: scale(0.8) rotate(-10deg);
+  right: -10%;
+  top: 0;
+  opacity: 80%;
+}

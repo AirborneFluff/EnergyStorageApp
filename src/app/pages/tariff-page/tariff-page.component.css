@@ -1,0 +1,5 @@
+.floating-svg {
+  transform: scale(0.8) scaleX(-1);
+  left: -70%;
+  top: -10%;
+}
