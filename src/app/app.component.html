@@ -1,7 +1,3 @@
-<div class="mobile-page-container">
-<!--  <app-welcome-page/>-->
-<!--  <app-upload-data-page/>-->
-<!--  <app-tariff-page/>-->
-<!--  <app-priority-page/>-->
-  <app-loading-page/>
+<div [@routeAnimations]="prepareRoute(outlet)"  class="app-container">
+  <router-outlet #outlet="outlet"></router-outlet>
 </div>

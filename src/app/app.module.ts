@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,12 +21,13 @@ import { LoadingPageComponent } from './pages/loading-page/loading-page.componen
     PriorityPageComponent,
     LoadingPageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    BrowserAnimationsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
