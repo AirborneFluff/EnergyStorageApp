@@ -17,6 +17,7 @@ export class UploadDataPageComponent {
       next: val => {
         this.setup.importData = val;
         this.importUploaded = true;
+        localStorage.setItem('importData', JSON.stringify(val));
       }
     })
   }
@@ -27,6 +28,7 @@ export class UploadDataPageComponent {
       next: val => {
         this.setup.exportData = val;
         this.exportUploaded = true;
+        localStorage.setItem('exportData', JSON.stringify(val));
       }
     })
   }
