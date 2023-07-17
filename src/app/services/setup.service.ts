@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Consumption} from "../models/Consumption";
+import {Consumption} from "../models/consumption";
 import {Observable} from "rxjs";
 
 @Injectable({
@@ -8,13 +8,15 @@ import {Observable} from "rxjs";
 export class SetupService {
   importData: Consumption[] = [];
   exportData: Consumption[] = [];
-  constructor() { }
+  constructor() {
+
+  }
 
   public parseConsumptionFile(file: File): Observable<any> {
     let fileReader = new FileReader();
 
     return new Observable((observer) => {
-      fileReader.onload = (e) => {
+      fileReader.onload = () => {
         const fileString = fileReader.result as string;
         const data = this.parseConsumptionData(fileString);
         observer.next(data);
