@@ -16,18 +16,18 @@ export class Inverter {
 
   public ApplyPower(importPower: number, exportPower: number): InverterOutput {
 
-    const exportPotential = exportPower * this.charge_efficiency;
-    const importPotential = importPower * this.discharge_efficiency;
+    const chargePotential = exportPower * this.charge_efficiency;
+    const requiredCharge = importPower / this.discharge_efficiency;
 
-    if (exportPotential > 0)
+    if (chargePotential > 0)
     {
-      const unusedPower = this.battery.AddCharge(exportPotential); // If the battery is full, we will have some unused power to export
+      const unusedPower = this.battery.AddCharge(chargePotential); // If the battery is full, we will have some unused power to export
       exportPower = unusedPower / this.charge_efficiency; // Return the unused to before efficiency sum
     }
-    if (importPotential > 0)
+    if (requiredCharge > 0)
     {
-      const requiredPower = this.battery.RemoveCharge(importPotential); // If the battery is empty, we will need to import some power
-      importPower = requiredPower / this.discharge_efficiency; // Return the unused to before efficiency sum
+      const importRequired = this.battery.RemoveCharge(requiredCharge); // If the battery is empty, we will need to import some power
+      importPower = importRequired * this.discharge_efficiency; // Return the unused to before efficiency sum
     }
 
     return {
