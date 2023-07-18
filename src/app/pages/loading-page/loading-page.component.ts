@@ -25,7 +25,7 @@ export class LoadingPageComponent implements OnInit {
       InverterOutputPower: 3
     }
     this.system = new EnergyStorageSystem(params);
-    console.log(this.system.SimulateFromDate(this._setup.importData, this._setup.exportData));
+    console.log(this.system.SimulateFromData(this._setup.importData, this._setup.exportData));
   }
 
 
