@@ -1,0 +1,47 @@
+{
+  "SystemParameters": {
+    "ImportTariff": 0.295,
+    "ExportTariff": 0.15,
+    "InverterOutputPower": 3,
+    "InverterChargeEfficiency": 0.95,
+    "InverterDischargeEfficiency": 0.95,
+    "BatteryCapacity": 2.4
+  },
+  "ExpectedImport": 4.14625,
+  "ExpectedExport": 0,
+  "ExpectedBatteryChargeLevel": 0,
+  "ImportData": [
+    {
+      "Consumption": 0,
+      "Start": "2023-05-01T00:00:00+01:00",
+      "End": "2023-05-01T00:30:00+01:00"
+    },
+    {
+      "Consumption": 0.5,
+      "Start": "2023-05-01T00:30:00+01:00",
+      "End": "2023-05-01T01:00:00+01:00"
+    },
+    {
+      "Consumption": 5,
+      "Start": "2023-05-01T01:00:00+01:00",
+      "End": "2023-05-01T01:30:00+01:00"
+    }
+  ],
+  "ExportData": [
+    {
+      "Consumption": 1,
+      "Start": "2023-05-01T00:00:00+01:00",
+      "End": "2023-05-01T00:30:00+01:00"
+    },
+    {
+      "Consumption": 0.5,
+      "Start": "2023-05-01T00:30:00+01:00",
+      "End": "2023-05-01T01:00:00+01:00"
+    },
+    {
+      "Consumption": 0,
+      "Start": "2023-05-01T01:00:00+01:00",
+      "End": "2023-05-01T01:30:00+01:00"
+    }
+  ]
+}

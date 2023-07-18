@@ -16,24 +16,24 @@ export class EnergyStorageSystem {
     this.energy_meter = new EnergyMeter(params.ImportTariff, params.ExportTariff);
   }
 
-  private ApplyConsumptionValues(importConsumption: number, exportConsumption: number): StorageSystemStatus {
+  public ApplyConsumptionValues(importConsumption: number, exportConsumption: number): StorageSystemStatus {
     const virtualValues = this.inverter.ApplyPower(importConsumption, exportConsumption);
     this.energy_meter.ImportEnergy(virtualValues.VirtualImport);
     this.energy_meter.ExportEnergy(virtualValues.VirtualExport);
     return this.GetStatus();
   }
 
-  public SimulateFromDate(importData: Consumption[], exportData: Consumption[]): SimulationResult {
+  public SimulateFromData(importData: Consumption[], exportData: Consumption[]): SimulationResult {
     for (let i = 0; i < importData.length; i++) {
       if (!importData[i]) continue;
       if (!exportData[i]) continue;
       this.ApplyConsumptionValues(importData[i].Consumption, exportData[i].Consumption);
-      console.log(this.GetStatus())
     }
-    const timeSimulated = importData[importData.length - 1].End.getTime()  - importData[0].Start.getTime()
+    const timeSimulated = 0//importData[importData.length - 1].End?.getTime()  - importData[0].Start?.getTime()
     const daysSimulated = timeSimulated / 86400000; // 86400000 => 1 Day
     return {
-      DaysSimulated: daysSimulated
+      DaysSimulated : daysSimulated,
+      FinalStatus : this.GetStatus()
     }
   }
 

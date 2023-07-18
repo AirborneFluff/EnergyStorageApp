@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EnergyStorageSystem} from "../../classes/energy-storage-system";
 import {StorageSystemParameters} from "../../models/storage-system-parameters";
+import {EssTestData, EssTestModule} from "../../tests/ess-test";
 
 @Component({
   selector: 'app-dev-page',
@@ -26,6 +27,20 @@ export class DevPageComponent implements OnInit {
 
     const importData = JSON.parse(importRaw);
     const exportData = JSON.parse(exportRaw);
-    console.log(this.system.SimulateFromDate(importData, exportData));
+    //console.log(this.system.SimulateFromData(importData, exportData));
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    let fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      const fileString = fileReader.result as string
+      const testData: EssTestData = JSON.parse(fileString);
+
+      let testModule = new EssTestModule();
+      console.log(testModule.Run(testData));
+    }
+    fileReader.readAsText(file);
   }
 }

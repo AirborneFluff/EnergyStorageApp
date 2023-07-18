@@ -1,3 +1,6 @@
+import {StorageSystemStatus} from "./storage-system-status";
+
 export interface SimulationResult {
-  DaysSimulated: number
+  DaysSimulated : number,
+  FinalStatus : StorageSystemStatus
 }
