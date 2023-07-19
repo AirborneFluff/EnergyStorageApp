@@ -12,6 +12,7 @@ import {FormsModule} from "@angular/forms";
 import { PriorityPageComponent } from './pages/priority-page/priority-page.component';
 import { LoadingPageComponent } from './pages/loading-page/loading-page.component';
 import { DevPageComponent } from './pages/dev-page/dev-page.component';
+import { InputPageComponent } from './pages/input-page/input-page.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DevPageComponent } from './pages/dev-page/dev-page.component';
     TariffPageComponent,
     PriorityPageComponent,
     LoadingPageComponent,
-    DevPageComponent
+    DevPageComponent,
+    InputPageComponent
   ],
   imports: [
     BrowserModule,

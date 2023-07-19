@@ -13,7 +13,6 @@ h1,
 p {
   font-weight: 600;
   text-align: center;
-  margin: 0 2.5rem 0 2.5rem;
 }
 
 h1,
@@ -42,9 +41,6 @@ p {
 .title-section,
 .nav-section {
   margin-block: 4rem;
-}
-.action-section,
-.info-section {
 }
 
 .action-filler-container {
