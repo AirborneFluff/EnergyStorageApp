@@ -6,7 +6,7 @@ import {SimulationResult} from "../models/simulation-result";
 export class EssTestModule {
   public Run(testData: EssTestData) {
     const system: EnergyStorageSystem = new EnergyStorageSystem(testData.SystemParameters);
-    const simulationResult: SimulationResult = system.SimulateFromData(testData.ImportData, testData.ExportData);
+    const simulationResult: SimulationResult = system.CalculateFromData(testData.ImportData, testData.ExportData);
     const batteryChargeLevel = roundToDigits(simulationResult.FinalStatus.BatteryChargeLevel, 1);
     const exportReading = roundToDigits(simulationResult.FinalStatus.ExportReading, 1);
     const importReading = roundToDigits(simulationResult.FinalStatus.ImportReading, 1);

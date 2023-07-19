@@ -3,8 +3,6 @@ import {MeterReading} from "../models/meter-reading";
 export class EnergyMeter {
   private net_import: number = 0;
   private net_export: number = 0;
-  private import_balance: number = 0;
-  private export_balance: number = 0;
   private readonly import_tariff: number;
   private readonly export_tariff: number;
 
@@ -17,8 +15,8 @@ export class EnergyMeter {
 
   public get NetImport() { return this.net_import }
   public get NetExport() { return this.net_export }
-  public get ImportBalance() { return this.import_balance }
-  public get ExportBalance() { return this.export_balance }
+  public get ImportBalance() { return this.net_import * this.import_tariff }
+  public get ExportBalance() { return this.net_export * this.export_tariff }
 
   /**
    * @param importTariff The unit cost of import (kWh)
@@ -46,7 +44,6 @@ export class EnergyMeter {
    */
   public ImportEnergy(power: number) {
     this.net_import += power;
-    this.import_balance += power * this.import_tariff;
   }
   /**
    * Exports energy to the grid
@@ -54,6 +51,5 @@ export class EnergyMeter {
    */
   public ExportEnergy(power: number) {
     this.net_export += power;
-    this.export_balance += power * this.export_tariff;
   }
 }

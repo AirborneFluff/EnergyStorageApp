@@ -18,6 +18,7 @@ export class LoadingPageComponent implements OnInit {
   ngOnInit(): void {
     let params: StorageSystemParameters = {
       BatteryCapacity: 2.24,
+      BatteryCycleLife: 6000,
       ExportTariff: 0.15,
       ImportTariff: 0.295,
       InverterChargeEfficiency: 0.95,
@@ -25,7 +26,7 @@ export class LoadingPageComponent implements OnInit {
       InverterOutputPower: 3
     }
     this.system = new EnergyStorageSystem(params);
-    console.log(this.system.SimulateFromData(this._setup.importData, this._setup.exportData));
+    console.log(this.system.CalculateFromData(this._setup.importData, this._setup.exportData));
   }
 
 

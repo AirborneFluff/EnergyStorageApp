@@ -11,7 +11,7 @@ export class EnergyStorageSystem {
   private energy_meter!: EnergyMeter;
 
   constructor (params: StorageSystemParameters) {
-    const battery = new Battery(params.BatteryCapacity);
+    const battery = new Battery(params.BatteryCapacity, params.BatteryCycleLife);
     this.inverter = new Inverter(params.InverterOutputPower, battery, params.InverterChargeEfficiency, params.InverterDischargeEfficiency);
     this.energy_meter = new EnergyMeter(params.ImportTariff, params.ExportTariff);
   }
@@ -23,7 +23,7 @@ export class EnergyStorageSystem {
     return this.GetStatus();
   }
 
-  public SimulateFromData(importData: Consumption[], exportData: Consumption[]): SimulationResult {
+  public CalculateFromData(importData: Consumption[], exportData: Consumption[]): SimulationResult {
     for (let i = 0; i < importData.length; i++) {
       if (!importData[i]) continue;
       if (!exportData[i]) continue;
@@ -40,7 +40,7 @@ export class EnergyStorageSystem {
   public GetStatus(): StorageSystemStatus {
     return {
       BatteryChargeLevel: this.inverter.GetBatteryChargeLevel(),
-      BatteryHealth: 0,
+      BatteryHealth: this.inverter.GetBatteryHealth(),
       Date: new Date(),
       ExportBalance: this.energy_meter.ExportBalance,
       ExportReading: this.energy_meter.NetExport,

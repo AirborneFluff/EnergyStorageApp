@@ -13,6 +13,7 @@ export class DevPageComponent implements OnInit {
   ngOnInit(): void {
     let params: StorageSystemParameters = {
       BatteryCapacity: 2.24,
+      BatteryCycleLife: 6000,
       ExportTariff: 0.15,
       ImportTariff: 0.295,
       InverterChargeEfficiency: 0.95,
@@ -27,7 +28,7 @@ export class DevPageComponent implements OnInit {
 
     const importData = JSON.parse(importRaw);
     const exportData = JSON.parse(exportRaw);
-    //console.log(this.system.SimulateFromData(importData, exportData));
+    console.log(this.system.CalculateFromData(importData, exportData));
   }
 
   onFileSelected(event: any) {

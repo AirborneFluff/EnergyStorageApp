@@ -39,4 +39,8 @@ export class Inverter {
   public GetBatteryChargeLevel(): number {
     return this.battery.ChargeLevel;
   }
+
+  public GetBatteryHealth():number {
+    return this.battery.Health;
+  }
 }

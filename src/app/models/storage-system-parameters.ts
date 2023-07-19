@@ -4,5 +4,6 @@ export interface StorageSystemParameters {
   InverterOutputPower: number,
   InverterChargeEfficiency: number,
   InverterDischargeEfficiency: number,
-  BatteryCapacity: number
+  BatteryCapacity: number,
+  BatteryCycleLife: number
 }
