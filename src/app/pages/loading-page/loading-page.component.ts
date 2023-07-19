@@ -17,7 +17,8 @@ export class LoadingPageComponent implements OnInit {
   }
   ngOnInit(): void {
     let params: StorageSystemParameters = {
-      BatteryCapacity: 2.24,
+      BatteryNominalCapacity: 2.4,
+      BatteryCapacity: 2.28,
       BatteryCycleLife: 6000,
       ExportTariff: 0.15,
       ImportTariff: 0.295,

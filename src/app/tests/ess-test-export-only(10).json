@@ -5,7 +5,8 @@
     "InverterOutputPower": 3,
     "InverterChargeEfficiency": 0.95,
     "InverterDischargeEfficiency": 0.95,
-    "BatteryCapacity": 2.4,
+    "BatteryNominalCapacity": 2.4,
+    "BatteryCapacity": 2.28,
     "BatteryCycleLife": 6000
   },
   "ExpectedImport": 0,

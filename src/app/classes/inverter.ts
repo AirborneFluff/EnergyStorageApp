@@ -35,12 +35,7 @@ export class Inverter {
       VirtualExport: exportPower
     }
   }
-
-  public GetBatteryChargeLevel(): number {
-    return this.battery.ChargeLevel;
-  }
-
-  public GetBatteryHealth():number {
-    return this.battery.Health;
+  public GetBattery() {
+    return this.battery
   }
 }

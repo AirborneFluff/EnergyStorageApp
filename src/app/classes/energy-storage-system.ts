@@ -4,14 +4,13 @@ import {StorageSystemParameters} from "../models/storage-system-parameters";
 import {Battery} from "./battery";
 import {StorageSystemStatus} from "../models/storage-system-status";
 import {Consumption} from "../models/consumption";
-import {SimulationResult} from "../models/simulation-result";
 
 export class EnergyStorageSystem {
   private inverter!: Inverter;
   private energy_meter!: EnergyMeter;
 
   constructor (params: StorageSystemParameters) {
-    const battery = new Battery(params.BatteryCapacity, params.BatteryCycleLife);
+    const battery = new Battery(params.BatteryNominalCapacity, params.BatteryCapacity, params.BatteryCycleLife);
     this.inverter = new Inverter(params.InverterOutputPower, battery, params.InverterChargeEfficiency, params.InverterDischargeEfficiency);
     this.energy_meter = new EnergyMeter(params.ImportTariff, params.ExportTariff);
   }
@@ -23,7 +22,7 @@ export class EnergyStorageSystem {
     return this.GetStatus();
   }
 
-  public CalculateFromData(importData: Consumption[], exportData: Consumption[]): SimulationResult {
+  public CalculateFromData(importData: Consumption[], exportData: Consumption[]): any {
     for (let i = 0; i < importData.length; i++) {
       if (!importData[i]) continue;
       if (!exportData[i]) continue;
@@ -33,14 +32,16 @@ export class EnergyStorageSystem {
     const daysSimulated = timeSimulated / 86400000; // 86400000 => 1 Day
     return {
       DaysSimulated : daysSimulated,
-      FinalStatus : this.GetStatus()
+      FinalStatus : this.GetStatus(),
+      BatteryUsableCapacity: this.inverter.GetBattery().UsableCapacity,
+      BatteryRemainingCycles: this.inverter.GetBattery().RemainingCycles
     }
   }
 
   public GetStatus(): StorageSystemStatus {
     return {
-      BatteryChargeLevel: this.inverter.GetBatteryChargeLevel(),
-      BatteryHealth: this.inverter.GetBatteryHealth(),
+      BatteryChargeLevel: this.inverter.GetBattery().ChargeLevel,
+      BatteryHealth: this.inverter.GetBattery().Health,
       Date: new Date(),
       ExportBalance: this.energy_meter.ExportBalance,
       ExportReading: this.energy_meter.NetExport,

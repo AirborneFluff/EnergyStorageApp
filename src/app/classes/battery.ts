@@ -1,5 +1,6 @@
 export class Battery {
   private readonly initial_usable_capacity!: number;
+  private readonly nominal_capacity!: number;
   private readonly cycle_life!: number;
   private current_capacity: number = 0;
   private lifetime_charge: number = 0;
@@ -11,8 +12,12 @@ export class Battery {
   public get UsableCapacity(): number {
     return this.initial_usable_capacity - this.used_cycles * this.degradationPerCycle;
   }
-  public get Health(): number {
-    return this.UsableCapacity / this.initial_usable_capacity;
+  public get RemainingCycles(): number {
+    return Math.round(this.cycle_life - this.used_cycles);
+  }
+  public get Health(): number { // Considered dead at 60% nominal capacity
+    const sixtyP = this.nominal_capacity * 0.6;
+    return (this.UsableCapacity - sixtyP) / (this.initial_usable_capacity - sixtyP)
   }
   private get degradationPerCycle(): number {
     return (this.initial_usable_capacity - this.initial_usable_capacity * 0.8) / this.cycle_life;
@@ -20,10 +25,12 @@ export class Battery {
 
   /**
    * A battery representation which can be charged/discharged up to its usable capacity
+   * @param nominalCapacity The full capacity of the battery
    * @param usableCapacity The usable capacity of the battery (kWh)
    * @param cycleLife The number of charge/discharge cycles for the batteries rated lifetime
    */
-  constructor (usableCapacity: number, cycleLife: number) {
+  constructor (nominalCapacity: number, usableCapacity: number, cycleLife: number) {
+    this.nominal_capacity = nominalCapacity;
     this.initial_usable_capacity = usableCapacity;
     this.cycle_life = cycleLife;
   }
