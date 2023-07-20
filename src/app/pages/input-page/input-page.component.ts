@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {SetupService} from "../../services/setup.service";
+import {LocationStrategy} from "@angular/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-input-page',
@@ -8,29 +10,55 @@ import {SetupService} from "../../services/setup.service";
   styleUrls: ['./input-page.component.css'],
   animations: [
     trigger('flyInOut', [
-      transition(":enter", [
-        style({ transform: "translateX(100%) translateY(-100%)", zIndex: 2}),
-        animate(
-          "250ms ease-out",
+      transition("void => left", [
+        style({ transform: "translateX(100%) translateY(-100%)"}),
+        animate("250ms ease-out",
           style({ transform: "translateX(0) translateY(-100%)"})
-        )
-      ]),
-      transition(":leave", [
-        style({ transform: "translateX(0)", zIndex: 1}),
+        )]),
+      transition("left => void", [
+        style({ transform: "translateX(0)"}),
         animate(
           "250ms ease-out",
           style({ transform: "translateX(-30%)"})
+        )
+      ]),
+      transition("void => right", [
+        style({ transform: "translateX(-30%)"}),
+        animate("250ms ease-out",
+          style({ transform: "translateX(0)"})
+        )]),
+      transition("right => void", [
+        style({ transform: "translateX(0) translateY(-100%)"}),
+        animate(
+          "250ms ease-out",
+          style({ transform: "translateX(100%) translateY(-100%)"})
         )
       ])
     ])
   ]
 })
 export class InputPageComponent {
-  sectionState: number = 0;
+  private _sectionState: number = 0;
+  animationState: 'left' | 'right' = 'left';
   importUploaded = false;
   exportUploaded = false;
 
-  constructor(public setup: SetupService) {}
+  public set sectionState(val: number) {
+    val > this._sectionState ? this.animationState = 'left' : this.animationState = 'right';
+    val <= 0 ? this._sectionState = 0 : this._sectionState = val;
+  }
+  public get sectionState() { return this._sectionState; }
+
+  constructor(public setup: SetupService) {
+    history.pushState(null, window.location.href);
+  }
+
+  @HostListener( 'window:popstate', ['$event'])
+  onPopState(event: Event): void {
+    event.preventDefault();
+    history.pushState(null, window.location.href);
+    this.sectionState--;
+  }
   onImportFileSelected(event: any) {
     const file = event.target.files[0];
     this.setup.parseConsumptionFile(file).subscribe({

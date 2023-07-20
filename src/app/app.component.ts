@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {routerAnimations} from "./route-animations";
 
@@ -10,8 +10,4 @@ import {routerAnimations} from "./route-animations";
 })
 export class AppComponent {
   title = 'client';
-
-  prepareRoute(outlet: RouterOutlet) {
-    return outlet.activatedRouteData['animation'];
-  }
 }
