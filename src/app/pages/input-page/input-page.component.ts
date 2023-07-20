@@ -1,8 +1,6 @@
 import {Component, HostListener} from '@angular/core';
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, style, transition, trigger} from "@angular/animations";
 import {SetupService} from "../../services/setup.service";
-import {LocationStrategy} from "@angular/common";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-input-page',
