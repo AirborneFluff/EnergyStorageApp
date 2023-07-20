@@ -4,8 +4,12 @@
   padding: 0;
   margin: 0;
 }
+.width-100 {
+  width: 100%;
+}
 
 body {
+  position: fixed;
   font-family: 'Sarabun', sans-serif;
 }
 
@@ -48,27 +52,6 @@ p {
   margin: auto;
 }
 
-.btn-next:hover {
-  cursor: pointer;
-}
-
-.btn-next {
-  padding: 1rem 0 1rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-.btn-next-arrow {
-  display: flex;
-  background-color: #00ADEE;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  padding: 12px
-}
-
 .btn-next-svg {
   color: #fff;
 }
@@ -76,10 +59,10 @@ p {
 .capsule-button {
   display: block;
   margin-inline: auto;
-  margin-block: 0.5rem;
   height: 3rem;
   border-radius: 1.5rem;
   width: 80%;
+  max-width: 400px;
 
   font-weight: 600;
   font-size: 1rem;
@@ -115,6 +98,7 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 1.5rem 0 1.5rem 0;
 }
 .svg-spinner svg {
   width: 64px;

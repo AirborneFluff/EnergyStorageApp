@@ -6,6 +6,9 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class SetupService {
+  public Priority: number = -1;
+  public ImportTariff: number = 0.3;
+  public ExportTariff: number = 0.1;
   importData: Consumption[] = [];
   exportData: Consumption[] = [];
   constructor() {

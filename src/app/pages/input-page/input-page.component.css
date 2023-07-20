@@ -1,15 +1,69 @@
-.container-fluid {
+.page-container {
   max-width: 768px;
   overflow: hidden;
-  height: 100vh;
+  position: relative;
+  padding-inline: 1.5rem;
+  height: calc(100vh - 75px);
 }
 
 section {
-  height: 100vh;
+  max-width: 768px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.nav-row,
-.info-row,
 .title-row {
-  margin-block: 4rem;
+  margin-top: 2rem;
+}
+
+.nav-row {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.center-svg {
+  width: 25%;
+  transform: scale(3);
+}
+
+
+
+.btn-next:hover {
+  cursor: pointer;
+}
+
+.btn-next {
+  padding: 1rem 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-back-arrow,
+.btn-next-arrow {
+  display: flex;
+  background-color: #00ADEE;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+}
+
+.btn-back-arrow {
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+}
+
+input[type=file] {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  transform: scale(3);
+  opacity: 0;
 }
