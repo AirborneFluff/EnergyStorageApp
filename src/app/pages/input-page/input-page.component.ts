@@ -1,5 +1,5 @@
 import {Component, HostListener} from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
+import {animate, animation, style, transition, trigger} from "@angular/animations";
 import {SetupService} from "../../services/setup.service";
 
 @Component({
@@ -10,25 +10,25 @@ import {SetupService} from "../../services/setup.service";
     trigger('flyInOut', [
       transition("void => left", [
         style({ transform: "translateX(100%) translateY(-100%)"}),
-        animate("250ms ease-out",
+        animate("2500ms ease-out",
           style({ transform: "translateX(0) translateY(-100%)"})
         )]),
       transition("left => void", [
         style({ transform: "translateX(0)"}),
         animate(
-          "250ms ease-out",
+          "2500ms ease-out",
           style({ transform: "translateX(-30%)"})
         )
       ]),
       transition("void => right", [
         style({ transform: "translateX(-30%)"}),
-        animate("250ms ease-out",
+        animate("2500ms ease-out",
           style({ transform: "translateX(0)"})
         )]),
       transition("right => void", [
         style({ transform: "translateX(0) translateY(-100%)"}),
         animate(
-          "250ms ease-out",
+          "2500ms ease-out",
           style({ transform: "translateX(100%) translateY(-100%)"})
         )
       ])
@@ -42,7 +42,7 @@ export class InputPageComponent {
   exportUploaded = false;
 
   public set sectionState(val: number) {
-    val > this._sectionState ? this.animationState = 'left' : this.animationState = 'right';
+    //val > this._sectionState ? this.animationState = 'left' : this.animationState = 'right';
     val <= 0 ? this._sectionState = 0 : this._sectionState = val;
   }
   public get sectionState() { return this._sectionState; }
@@ -78,4 +78,6 @@ export class InputPageComponent {
       }
     })
   }
+
+  protected readonly animation = animation;
 }
