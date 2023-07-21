@@ -1,18 +1,21 @@
 .page-container {
   max-width: 768px;
   overflow: hidden;
-  position: relative;
   padding-inline: 1.5rem;
   height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 section {
-  opacity: 0.5;
+  flex-shrink: 0;
   max-width: 768px;
   background: #fff;
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
 }
 
 .title-row {

@@ -9,41 +9,46 @@ import {SetupService} from "../../services/setup.service";
   animations: [
     trigger('flyInOut', [
       transition("void => left", [
-        style({ transform: "translateX(100%) translateY(-100%)"}),
-        animate("2500ms ease-out",
-          style({ transform: "translateX(0) translateY(-100%)"})
+        animate("250ms ease-out",
+          style({ transform: "translateX(-100%)"})
         )]),
       transition("left => void", [
-        style({ transform: "translateX(0)"}),
         animate(
-          "2500ms ease-out",
+          "250ms ease-out",
           style({ transform: "translateX(-30%)"})
         )
       ]),
       transition("void => right", [
         style({ transform: "translateX(-30%)"}),
-        animate("2500ms ease-out",
+        animate("250ms ease-out",
           style({ transform: "translateX(0)"})
         )]),
       transition("right => void", [
-        style({ transform: "translateX(0) translateY(-100%)"}),
+        style({ transform: "translateX(-100%)"}),
         animate(
-          "2500ms ease-out",
-          style({ transform: "translateX(100%) translateY(-100%)"})
+          "250ms ease-out",
+          style({ transform: "translateX(0)"})
         )
-      ])
+      ]),
+      transition("void => *", [
+        style({ opacity: 0 }),
+        animate("250ms ease-out",
+          style({ opacity: 1})
+        )]),
     ])
   ]
 })
 export class InputPageComponent {
   private _sectionState: number = 0;
-  animationState: 'left' | 'right' = 'left';
+  animationState: 'left' | 'right' | '' = '';
   importUploaded = false;
   exportUploaded = false;
 
   public set sectionState(val: number) {
-    //val > this._sectionState ? this.animationState = 'left' : this.animationState = 'right';
-    val <= 0 ? this._sectionState = 0 : this._sectionState = val;
+    val > this._sectionState ? this.animationState = 'left' : this.animationState = 'right';
+    setTimeout(() => {
+      val <= 0 ? this._sectionState = 0 : this._sectionState = val;
+    })
   }
   public get sectionState() { return this._sectionState; }
 

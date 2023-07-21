@@ -1,7 +1,4 @@
 <div class="page-container mx-auto">
-  <div class="container">
-    <button (click)="animationState == 'left' ? animationState = 'right' : animationState = 'left'">Current Direction: {{animationState}}</button>
-  </div>
   <section [@flyInOut]="animationState" *ngIf="sectionState === 0">
     <div class="title-row">
       <h1 class="mx-sm-5">Let’s go back and install energy storage in your home</h1>
