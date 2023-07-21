@@ -19,7 +19,7 @@ export class SetupService {
   public GenerateSystems(): EnergyStorageSystem[] {
     let systems: EnergyStorageSystem[] = [];
     for (let i = 0; i < essData.Systems.length; i++) {
-      const params: Partial<StorageSystemParameters> = essData.Systems[i].Parameters
+      const params: Partial<StorageSystemParameters> = essData.Systems[i];
       params.ImportTariff = this.ImportTariff;
       params.ExportTariff = this.ExportTariff;
       systems.push(new EnergyStorageSystem(params as StorageSystemParameters))
@@ -48,19 +48,16 @@ export class SetupService {
 
     for (let i = 1; i < lines.length; i++) {
       const values: string[] = lines[i].split(',');
-      const consumption = Number.parseFloat(values[0]);
-      const startDate = new Date(values[1]?.trim());
-      const endDate = new Date(values[2]?.trim());
-
-      if (!consumption || !startDate || !endDate) continue;
-
+      const consumption = Number.parseFloat(values[0]) ?? 0;
+      const startTimestamp = Date.parse(values[1]?.trim());
+      const endTimestamp = Date.parse(values[2]?.trim());
+      if (isNaN(consumption) || isNaN(startTimestamp) || isNaN(endTimestamp)) continue;
       csvData.push({
         Consumption: consumption,
-        Start: startDate,
-        End: endDate
+        Start: new Date(startTimestamp),
+        End: new Date(endTimestamp)
       });
     }
-
     return csvData;
   }
 }

@@ -61,7 +61,7 @@ export class InputPageComponent implements OnInit {
         if (!this.importUploaded || !this.exportUploaded) return;
         break;
       case PageSections.Priority:
-        if (!this.setup.Priority) return;
+        if (this.setup.Priority == undefined) return;
         break;
     }
 
