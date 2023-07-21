@@ -33,6 +33,7 @@ export class Battery {
     this.nominal_capacity = nominalCapacity;
     this.initial_usable_capacity = usableCapacity;
     this.cycle_life = cycleLife;
+    this.current_capacity = usableCapacity/2; // Storage power
   }
 
   /**

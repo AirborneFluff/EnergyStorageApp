@@ -1,7 +1,6 @@
 .page-container {
   max-width: 768px;
   overflow: hidden;
-  padding-inline: 1.5rem;
   height: calc(100vh - 75px);
   display: flex;
   flex-direction: row;
@@ -9,6 +8,7 @@
 }
 
 section {
+  padding-inline: 1.5rem;
   flex-shrink: 0;
   max-width: 768px;
   background: #fff;
@@ -39,6 +39,18 @@ section {
   cursor: pointer;
 }
 
+.btn-disabled {
+  color: #4B5967 !important;
+}
+.btn-disabled .btn-next-arrow {
+  background-color: #4B5967 !important;
+}
+.btn-next-svg {
+  color: #fff;
+}
+.btn-next-text {
+  color: inherit;
+}
 .btn-next {
   padding: 1rem 0 1rem 0;
   display: flex;
@@ -46,7 +58,6 @@ section {
   align-items: center;
   gap: 1rem;
 }
-
 .btn-back-arrow,
 .btn-next-arrow {
   display: flex;
@@ -61,6 +72,30 @@ section {
   width: 32px;
   height: 32px;
   padding: 8px;
+}
+
+.capsule-button {
+  display: block;
+  margin-inline: auto;
+  height: 3rem;
+  border-radius: 1.5rem;
+  width: 95%;
+  max-width: 400px;
+
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+
+  border: 1px solid #F3F3F3;
+  background: #FFF;
+  box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.15);
+}
+
+
+
+.button-success {
+  border-color: #80ED99 !important;
+  background-color: rgba(128, 237, 153, 0.15) !important;
 }
 
 input[type=file] {

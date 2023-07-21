@@ -52,32 +52,6 @@ p {
   margin: auto;
 }
 
-.btn-next-svg {
-  color: #fff;
-}
-
-.capsule-button {
-  display: block;
-  margin-inline: auto;
-  height: 3rem;
-  border-radius: 1.5rem;
-  width: 80%;
-  max-width: 400px;
-
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-
-  border: 1px solid #F3F3F3;
-  background: #FFF;
-  box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.15);
-}
-
-.button-success {
-  border-color: #80ED99;
-  background-color: rgba(128, 237, 153, 0.15);
-}
-
 .upload-button {
   overflow: hidden;
   position: relative;
@@ -110,7 +84,7 @@ p {
 
 h1,
 .text,
-.btn-next-text,
+.btn-next,
 .capsule-button,
 .primary-color {
   color: #00ADEE;

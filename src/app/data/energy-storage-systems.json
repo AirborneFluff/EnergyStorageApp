@@ -1,0 +1,30 @@
+{
+  "Systems": [
+    {
+      "Name" : "Pylon US5000 4.8kWh + Solis RAI 3.0kW",
+      "Supplier" : "I.T.S Technologies",
+      "Price/Inc" : 2169.60,
+      "Parameters" : {
+        "InverterOutputPower" : 3,
+        "InverterChargeEfficiency" : 0.94,
+        "InverterDischargeEfficiency" : 0.945,
+        "BatteryNominalCapacity" : 4.8,
+        "BatteryCapacity" : 4.56,
+        "BatteryCycleLife" : 6000
+      }
+    },
+    {
+      "Name" : "GivEnergy All In One - 6kW AC charger & 13.5 kWh storage",
+      "Supplier" : "I.T.S Technologies",
+      "Price/Inc" : 7038,
+      "Parameters" : {
+        "InverterOutputPower" : 6,
+        "InverterChargeEfficiency" : 0.94,
+        "InverterDischargeEfficiency" : 0.945,
+        "BatteryNominalCapacity" : 13.5,
+        "BatteryCapacity" : 13.5,
+        "BatteryCycleLife" : 6000
+      }
+    }
+  ]
+}
