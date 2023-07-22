@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from "@angular/forms";
 import { InputPageComponent } from './pages/input-page/input-page.component';
+import { ResultsPageComponent } from './pages/results-page/results-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputPageComponent
+    InputPageComponent,
+    ResultsPageComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,5 @@ export interface StorageSystemStatus {
   ImportBalance: number,
   ExportBalance: number,
   BatteryChargeLevel: number,
-  BatteryHealth: number,
-  Date: Date,
+  BatteryHealth: number
 }

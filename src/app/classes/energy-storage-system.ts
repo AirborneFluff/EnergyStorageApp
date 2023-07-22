@@ -63,7 +63,6 @@ export class EnergyStorageSystem {
     return {
       BatteryChargeLevel: this.inverter.GetBattery().ChargeLevel,
       BatteryHealth: this.inverter.GetBattery().Health,
-      Date: new Date(),
       ExportBalance: this.energy_meter.ExportBalance,
       ExportReading: this.energy_meter.NetExport,
       ImportBalance: this.energy_meter.ImportBalance,

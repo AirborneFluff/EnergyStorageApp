@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {SetupService} from "../../services/setup.service";
 import {SimulationResult} from "../../models/simulation-result";
+import {CalculationsService} from "../../services/calculations.service";
 
 @Component({
   selector: 'app-input-page',
@@ -44,7 +45,7 @@ export class InputPageComponent implements OnInit {
   animationState: 'left' | 'right' | '' = '';
   animating: boolean = true;
 
-  constructor(public setup: SetupService) {}
+  constructor(public setup: SetupService, public calculation: CalculationsService) {}
   ngOnInit(): void {
     history.replaceState(null, window.location.href)
     history.pushState(null, window.location.href);
