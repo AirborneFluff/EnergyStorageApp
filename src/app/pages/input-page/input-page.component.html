@@ -34,18 +34,19 @@
       <h1 class="mx-sm-5">We just need you smart meter data from Octopus</h1>
     </div>
     <div class="center-row my-auto">
-      <button class="capsule-button upload-button my-3" [ngClass]="{'button-success' : importUploaded}">Upload Import Data
+      <button class="capsule-button upload-button my-3" [ngClass]="{'button-success' : setup.ImportDataValid}">Upload Import Data
         <input type="file" accept="text/csv" (change)="onImportFileSelected($event)">
       </button>
-      <button class="capsule-button upload-button my-3" [ngClass]="{'button-success' : exportUploaded}">Upload Export Data
+      <button class="capsule-button upload-button my-3" [ngClass]="{'button-success' : setup.ExportDataValid}">Upload Export Data
         <input type="file" accept="text/csv" (change)="onExportFileSelected($event)">
       </button>
+      <p class="mt-5 p-light" (click)="setup.LoadSampleData()">Use sample data instead</p>
     </div>
     <div class="info-row">
       <p class="mx-sm-5">Browse to your electricity data from Octopus Energy. Both export and import should be titled “consumption.csv”</p>
     </div>
     <div class="nav-row">
-      <div class="btn-next" (click)="SetSection(PageSections.Priority)" [ngClass]="{'btn-disabled' : !importUploaded || !exportUploaded}">
+      <div class="btn-next" (click)="SetSection(PageSections.Priority)" [ngClass]="{'btn-disabled' : !setup.ImportDataValid || !setup.ImportDataValid}">
         <span class="btn-next-text">Priority</span>
         <div class="btn-next-arrow">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-next-svg">

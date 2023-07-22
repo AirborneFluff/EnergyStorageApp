@@ -54,9 +54,6 @@ export class EnergyStorageSystem {
     const realCost = this.real_meter.ImportBalance - this.real_meter.ExportBalance;
     const virtualCost = this.energy_meter.ImportBalance - this.energy_meter.ExportBalance;
     const benefit = realCost - virtualCost;
-    console.log((365/simulationDays) * benefit)
-    console.log(this.price)
-
     if (benefit <= 0) return null;
 
     return this.price / ((365/simulationDays) * benefit)

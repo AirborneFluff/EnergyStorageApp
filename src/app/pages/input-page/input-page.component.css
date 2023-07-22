@@ -33,7 +33,9 @@ section {
   transform: scale(3);
 }
 
-
+.p-light {
+  font-weight: 500;
+}
 
 .btn-next:hover {
   cursor: pointer;

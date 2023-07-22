@@ -43,8 +43,6 @@ export class InputPageComponent implements OnInit {
   currentSection: PageSections = PageSections.Intro;
   animationState: 'left' | 'right' | '' = '';
   animating: boolean = true;
-  importUploaded = false;
-  exportUploaded = false;
 
   constructor(public setup: SetupService) {}
   ngOnInit(): void {
@@ -58,7 +56,7 @@ export class InputPageComponent implements OnInit {
 
     switch(this.currentSection) {
       case PageSections.Upload:
-        if (!this.importUploaded || !this.exportUploaded) return;
+        if (!this.setup.ImportDataValid || !this.setup.ExportDataValid) return;
         break;
       case PageSections.Priority:
         if (this.setup.Priority == undefined) return;
@@ -84,7 +82,6 @@ export class InputPageComponent implements OnInit {
     this.setup.parseConsumptionFile(file).subscribe({
       next: val => {
         this.setup.importData = val;
-        this.importUploaded = true;
         localStorage.setItem('importData', JSON.stringify(val));
       }
     })
@@ -94,7 +91,6 @@ export class InputPageComponent implements OnInit {
     this.setup.parseConsumptionFile(file).subscribe({
       next: val => {
         this.setup.exportData = val;
-        this.exportUploaded = true;
         localStorage.setItem('exportData', JSON.stringify(val));
       }
     })
