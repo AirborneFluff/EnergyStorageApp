@@ -5,7 +5,7 @@ import {EnergyStorageSystem} from "../classes/energy-storage-system";
 import {StorageSystemParameters} from "../models/storage-system-parameters";
 import essData from '../data/energy-storage-systems.json'
 import importSampleData from '../data/import-sample-data.json'
-import exportSampleData from '../data/export-sample-data1.json'
+import exportSampleData from '../data/export-sample-data.json'
 
 @Injectable({
   providedIn: 'root'
