@@ -1,7 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {SetupService} from "../../services/setup.service";
-import {SimulationResult} from "../../models/simulation-result";
 import {CalculationsService} from "../../services/calculations.service";
 
 @Component({
@@ -57,7 +56,7 @@ export class InputPageComponent implements OnInit {
 
     switch(this.currentSection) {
       case PageSections.Upload:
-        if (!this.setup.ImportDataValid || !this.setup.ExportDataValid) return;
+        if (!this.calculation.IsDataValid) return;
         break;
       case PageSections.Priority:
         if (this.setup.Priority == undefined) return;
@@ -82,7 +81,7 @@ export class InputPageComponent implements OnInit {
     const file = event.target.files[0];
     this.setup.parseConsumptionFile(file).subscribe({
       next: val => {
-        this.setup.importData = val;
+        this.calculation.ImportData = val;
         localStorage.setItem('importData', JSON.stringify(val));
       }
     })
@@ -91,19 +90,27 @@ export class InputPageComponent implements OnInit {
     const file = event.target.files[0];
     this.setup.parseConsumptionFile(file).subscribe({
       next: val => {
-        this.setup.exportData = val;
+        this.calculation.ExportData = val;
         localStorage.setItem('exportData', JSON.stringify(val));
       }
     })
   }
 
   performCalculation() {
-    const systems = this.setup.GenerateSystems();
-    let results: SimulationResult[] = [];
-    for (let i = 0; i < systems.length; i++) {
-      results.push(systems[i].CalculateFromData(this.setup.importData, this.setup.exportData));
-    }
-    console.log(results)
+    this.calculation.GenerateSystems();
+    this.calculation.RunCalculations().subscribe({
+      next: val => {
+        console.log(val);
+      },
+      error: e => {
+        console.log(e);
+      }
+    });
+    // let results: SimulationResult[] = [];
+    // for (let i = 0; i < systems.length; i++) {
+    //   results.push(systems[i].CalculateFromData(this.setup.importData, this.setup.exportData));
+    // }
+    // console.log(results)
   }
 
   protected readonly PageSections = PageSections;
