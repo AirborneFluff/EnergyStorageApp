@@ -107,6 +107,7 @@ export class CalculationsService {
           PaybackYears: this._systems[i].GetPaybackYears(this.DaysOfData, this.RealImportBalance, this.RealExportBalance),
           CurrentSavings: this._systems[i].GetCurrentSavings(this.RealImportBalance, this.RealExportBalance),
           PotentialSavings: this._systems[i].GetPotentialSavings(this.RealImportBalance, this.RealExportBalance),
+          YearlySavings: this._systems[i].GetYearlySavings(this.DaysOfData, this.RealImportBalance, this.RealExportBalance),
           EndStatus: this._systems[i].GetStatus()
         })
       }

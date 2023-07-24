@@ -28,8 +28,11 @@ export class EnergyStorageSystem {
   }
 
   public GetPaybackYears(appliedDays: number, realImportBalance: number, realExportBalance: number): number {
+    return this.price / this.GetYearlySavings(appliedDays, realImportBalance, realExportBalance);
+  }
+  public GetYearlySavings(appliedDays: number, realImportBalance: number, realExportBalance: number) {
     const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
-    return this.price / ((365/appliedDays) * currentSavings)
+    return (365/appliedDays) * currentSavings;
   }
 
   public GetCurrentSavings(realImportBalance: number, realExportBalance: number): number {

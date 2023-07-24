@@ -7,13 +7,19 @@
   </nav>
 
   <section>
-    <h1 class="mt-4">You uploaded {{results.DaysCalculated}} days worth of data. Here’s the facts:</h1>
-    <canvas *ngIf="currentSystem"
-      baseChart
-      class="chart"
-      [data]="doughnutChartData"
-      [type]="'doughnut'"
-    >
-    </canvas>
+    <h1 class="my-5">You uploaded {{results.DaysCalculated}} days worth of data. Here’s the facts:</h1>
+    <div class="chart-container">
+      <canvas *ngIf="currentSystem"
+              baseChart
+              class="chart"
+              [data]="doughnutChartData"
+              [type]="'doughnut'"
+              [options]="doughnutOptions">
+      </canvas>
+      <div class="chart-center-container">
+        <span class="doughnut-center-text-lg">£{{currentSystem.YearlySavings.toFixed()}}</span>
+        <span class="doughnut-center-text-sm">saved / year</span>
+      </div>
+    </div>
   </section>
 </div>

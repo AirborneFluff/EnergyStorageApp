@@ -1,10 +1,8 @@
 import {Component, HostListener} from '@angular/core';
 import {Router} from "@angular/router";
-import {SetupService} from "../../services/setup.service";
-import {CalculationsService} from "../../services/calculations.service";
 import {FlyInOutAnimation} from "../../route-animations";
 import {CalculationResults} from "../../models/calculation-results";
-import {ChartData, ChartEvent, ChartType} from "chart.js";
+import {ChartConfiguration, ChartData} from "chart.js";
 import {StorageSystemResults} from "../../models/storage-system-results";
 
 @Component({
@@ -46,6 +44,9 @@ export class ResultsPageComponent {
   }
 
   public get doughnutChartData(): ChartData<'doughnut'> {
+    const low = this.currentSystem?.CurrentSavings;
+    const mid = this.currentSystem?.Price - low;
+    const total = this.currentSystem?.PotentialSavings - mid;
     return {
       labels: [
         'Current Savings',
@@ -53,9 +54,21 @@ export class ResultsPageComponent {
         'Potential Savings',
       ],
       datasets: [
-        {data: [this.currentSystem?.CurrentSavings, this.currentSystem?.Price, this.currentSystem?.PotentialSavings]},
+        { data: [low, mid, total],
+          backgroundColor: [
+            '#005777',
+            '#00adee',
+            '#80d6f7'
+          ]
+        },
       ]
     }
   }
+
+  public doughnutOptions: ChartConfiguration<'doughnut'>['options'] = {
+    responsive: true,
+    cutout: '75%',
+
+  };
 }
 

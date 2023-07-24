@@ -1,3 +1,35 @@
+.doughnut-center-text-lg {
+  padding-top: 2rem;
+  font-size: 4rem;
+  font-weight: 900;
+}
+.doughnut-center-text-sm {
+  font-size: 1.5rem;
+}
+
+.doughnut-center-text-sm,
+.doughnut-center-text-lg {
+  color: #00ADEE;
+  line-height: 1.1;
+}
+
+.chart-container {
+  position: relative;
+}
+
+.chart-center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
 .nav-capsule {
   margin: 0.5rem;
   height: 2.5rem;

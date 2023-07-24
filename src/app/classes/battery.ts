@@ -13,7 +13,7 @@ export class Battery {
     return this.initial_usable_capacity - this.used_cycles * this.degradationPerCycle;
   }
   public get CurrentCycleUsage(): number {
-    return this.RemainingCycles / this.TotalCycles;
+    return (this.TotalCycles - this.RemainingCycles) / this.TotalCycles;
   }
   public get RemainingCycles(): number {
     return Math.round(this.cycle_life - this.used_cycles);
