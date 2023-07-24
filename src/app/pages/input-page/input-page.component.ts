@@ -1,50 +1,22 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
+import {FlyInOutAnimation} from "../../route-animations";
 import {SetupService} from "../../services/setup.service";
 import {CalculationsService} from "../../services/calculations.service";
+import {delay} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-input-page',
   templateUrl: './input-page.component.html',
   styleUrls: ['./input-page.component.css'],
-  animations: [
-    trigger('flyInOut', [
-      transition("void => left", [
-        animate("250ms ease-out",
-          style({ transform: "translateX(-100%)"})
-        )]),
-      transition("left => void", [
-        animate(
-          "250ms ease-in",
-          style({ transform: "translateX(-30%)"})
-        )
-      ]),
-      transition("void => right", [
-        style({ transform: "translateX(-30%)"}),
-        animate("250ms ease-out",
-          style({ transform: "translateX(0)"})
-        )]),
-      transition("right => void", [
-        style({ transform: "translateX(-100%)"}),
-        animate(
-          "250ms ease-in",
-          style({ transform: "translateX(0)"})
-        )
-      ]),
-      transition("void => *", [
-        style({ opacity: 0 }),
-        animate("250ms ease-out",
-          style({ opacity: 1})
-        )]),
-    ])
-  ]
+  animations: [FlyInOutAnimation]
 })
 export class InputPageComponent implements OnInit {
   currentSection: PageSections = PageSections.Intro;
   animationState: 'left' | 'right' | '' = '';
   animating: boolean = true;
 
-  constructor(public setup: SetupService, public calculation: CalculationsService) {}
+  constructor(public setup: SetupService, public calculation: CalculationsService, private router: Router) {}
   ngOnInit(): void {
     history.replaceState(null, window.location.href)
     history.pushState(null, window.location.href);
@@ -97,20 +69,18 @@ export class InputPageComponent implements OnInit {
   }
 
   performCalculation() {
+    const time = new Date();
     this.calculation.GenerateSystems();
-    this.calculation.RunCalculations().subscribe({
+    this.calculation.RunCalculations()
+      .pipe(delay(new Date(time.getTime() + 1500)))
+      .subscribe({
       next: val => {
-        console.log(val);
+        this.router.navigate(['results'], { state: { results : val } });
       },
       error: e => {
         console.log(e);
       }
     });
-    // let results: SimulationResult[] = [];
-    // for (let i = 0; i < systems.length; i++) {
-    //   results.push(systems[i].CalculateFromData(this.setup.importData, this.setup.exportData));
-    // }
-    // console.log(results)
   }
 
   protected readonly PageSections = PageSections;

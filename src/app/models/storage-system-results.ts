@@ -5,5 +5,7 @@ export interface StorageSystemResults {
   Supplier: string,
   Price: number,
   PaybackYears: number,
+  CurrentSavings: number,
+  PotentialSavings: number
   EndStatus: StorageSystemStatus
 }

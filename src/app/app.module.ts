@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from "@angular/forms";
 import { InputPageComponent } from './pages/input-page/input-page.component';
 import { ResultsPageComponent } from './pages/results-page/results-page.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResultsPageComponent } from './pages/results-page/results-page.componen
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

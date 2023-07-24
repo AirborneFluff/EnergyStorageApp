@@ -1,1 +1,19 @@
-<p>results-page works!</p>
+<div class="page-container mx-auto">
+  <nav class="nav-capsule">
+    <button class="nav-button" (click)="menuPos = 1" [ngClass]="{'nav-button-active': menuPos == 1}">Overall</button>
+    <button class="nav-button" (click)="menuPos = 2" [ngClass]="{'nav-button-active': menuPos == 2}">Monthly</button>
+    <button class="nav-button" (click)="menuPos = 3" [ngClass]="{'nav-button-active': menuPos == 3}">Daily</button>
+    <div class="nav-button-highlighter highlighter-col-{{menuPos}}"></div>
+  </nav>
+
+  <section>
+    <h1 class="mt-4">You uploaded {{results.DaysCalculated}} days worth of data. Here’s the facts:</h1>
+    <canvas *ngIf="currentSystem"
+      baseChart
+      class="chart"
+      [data]="doughnutChartData"
+      [type]="'doughnut'"
+    >
+    </canvas>
+  </section>
+</div>

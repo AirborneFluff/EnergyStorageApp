@@ -7,6 +7,37 @@ import {
   animate,
 } from '@angular/animations';
 
+export const FlyInOutAnimation =
+  trigger('flyInOut', [
+    transition("void => left", [
+      animate("250ms ease-out",
+        style({ transform: "translateX(-100%)"})
+      )]),
+    transition("left => void", [
+      animate(
+        "250ms ease-in",
+        style({ transform: "translateX(-30%)"})
+      )
+    ]),
+    transition("void => right", [
+      style({ transform: "translateX(-30%)"}),
+      animate("250ms ease-out",
+        style({ transform: "translateX(0)"})
+      )]),
+    transition("right => void", [
+      style({ transform: "translateX(-100%)"}),
+      animate(
+        "250ms ease-in",
+        style({ transform: "translateX(0)"})
+      )
+    ]),
+    transition("void => *", [
+      style({ opacity: 0 }),
+      animate("250ms ease-out",
+        style({ opacity: 1})
+      )]),
+  ]);
+
 export const routerAnimations =
   trigger('routeAnimations', [
     transition('welcomePage => uploadPage', slideTo('right')),

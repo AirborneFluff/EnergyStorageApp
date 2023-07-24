@@ -12,8 +12,14 @@ export class Battery {
   public get UsableCapacity(): number {
     return this.initial_usable_capacity - this.used_cycles * this.degradationPerCycle;
   }
+  public get CurrentCycleUsage(): number {
+    return this.RemainingCycles / this.TotalCycles;
+  }
   public get RemainingCycles(): number {
     return Math.round(this.cycle_life - this.used_cycles);
+  }
+  public get TotalCycles(): number {
+    return this.cycle_life;
   }
   public get Health(): number { // Considered dead at 60% nominal capacity
     const sixtyP = this.nominal_capacity * 0.6;

@@ -28,13 +28,23 @@ export class EnergyStorageSystem {
   }
 
   public GetPaybackYears(appliedDays: number, realImportBalance: number, realExportBalance: number): number {
-    const realCost = realImportBalance - realExportBalance;
-    const virtualCost = this.energy_meter.ImportBalance - this.energy_meter.ExportBalance;
-    const benefit = realCost - virtualCost;
-
-    return this.price / ((365/appliedDays) * benefit)
+    const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
+    return this.price / ((365/appliedDays) * currentSavings)
   }
 
+  public GetCurrentSavings(realImportBalance: number, realExportBalance: number): number {
+    const realCost = realImportBalance - realExportBalance;
+    const virtualCost = this.energy_meter.ImportBalance - this.energy_meter.ExportBalance;
+    return realCost - virtualCost;
+  }
+
+  public GetPotentialSavings(realImportBalance: number, realExportBalance: number): number {
+    // const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
+    // const batteryHealth = this.inverter.GetBattery().Health;
+
+    const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
+    return currentSavings / this.inverter.GetBattery().CurrentCycleUsage;
+  }
 
   public GetStatus(): StorageSystemStatus {
     return {

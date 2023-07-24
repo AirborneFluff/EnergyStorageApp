@@ -89,7 +89,7 @@ export class CalculationsService {
     }
   }
 
-  public RunCalculations(): Observable<any> {
+  public RunCalculations(): Observable<CalculationResults> {
     return new Observable((observer: Subscriber<CalculationResults>) => {
       if (!this.IsDataValid) observer.error('Import/Export data is invalid');
 
@@ -105,6 +105,8 @@ export class CalculationsService {
           Supplier: this._systems[i].supplier,
           Price: this._systems[i].price,
           PaybackYears: this._systems[i].GetPaybackYears(this.DaysOfData, this.RealImportBalance, this.RealExportBalance),
+          CurrentSavings: this._systems[i].GetCurrentSavings(this.RealImportBalance, this.RealExportBalance),
+          PotentialSavings: this._systems[i].GetPotentialSavings(this.RealImportBalance, this.RealExportBalance),
           EndStatus: this._systems[i].GetStatus()
         })
       }
