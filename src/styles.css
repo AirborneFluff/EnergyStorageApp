@@ -34,6 +34,10 @@ p {
   font-weight: 600;
 }
 
+strong {
+  white-space: nowrap;
+}
+
 .setup-page-container {
   display: flex;
   justify-content: space-between;

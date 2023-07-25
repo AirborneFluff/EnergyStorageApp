@@ -7,4 +7,5 @@ export interface StorageSystemStatus {
   BatteryHealth: number,
   BatteryRemainingCycles: number,
   BatteryUsableCapacity: number,
+  TotalStoredEnergy: number,
 }

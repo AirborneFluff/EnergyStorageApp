@@ -12,8 +12,14 @@ export class Battery {
   public get UsableCapacity(): number {
     return this.initial_usable_capacity - this.used_cycles * this.degradationPerCycle;
   }
+  public get TotalEnergyStored(): number {
+    return this.lifetime_charge;
+  }
   public get CurrentCycleUsage(): number {
     return (this.TotalCycles - this.RemainingCycles) / this.TotalCycles;
+  }
+  public get CyclesUsed(): number {
+    return this.TotalCycles - this.RemainingCycles;
   }
   public get RemainingCycles(): number {
     return Math.round(this.cycle_life - this.used_cycles);

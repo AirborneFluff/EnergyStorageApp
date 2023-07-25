@@ -16,6 +16,28 @@ export class ResultsPageComponent {
   currentSystem!: StorageSystemResults;
   menuPos = 1;
 
+  public get currentSavings(): string {
+    return this.currentSystem.CurrentSavings.toFixed();
+  }
+  public get energyStored(): string {
+    return this.currentSystem.EndStatus.TotalStoredEnergy.toFixed();
+  }
+  public get remainingLifespan(): string {
+    return this.currentSystem.RemainingLifespanYears.toFixed(1);
+  }
+  public get remainingSavings(): string {
+    return (this.currentSystem.PotentialSavings-this.currentSystem.CurrentSavings).toFixed();
+  }
+  public get paybackYears(): string {
+    return this.currentSystem.PaybackYears.toFixed(1);
+  }
+  public get remainingPaybackYears(): string {
+    return (this.currentSystem.PaybackYears - this.results.DaysCalculated/365).toFixed(1);
+  }
+  public get totalSavings(): string {
+    return (this.currentSystem.PotentialSavings - this.currentSystem.Price).toFixed();
+  }
+
   constructor(private router: Router) {
     this.results = this.router?.getCurrentNavigation()?.extras?.state?.['results'];
     if (this.results) {

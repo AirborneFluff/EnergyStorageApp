@@ -99,17 +99,9 @@ export class CalculationsService {
       }
 
       let systemResults: StorageSystemResults[] = [];
+      const realCost: number = this.RealImportBalance - this.RealExportBalance;
       for (let i = 0; i < this._systems.length; i++) {
-        systemResults.push({
-          Name: this._systems[i].name,
-          Supplier: this._systems[i].supplier,
-          Price: this._systems[i].price,
-          PaybackYears: this._systems[i].GetPaybackYears(this.DaysOfData, this.RealImportBalance, this.RealExportBalance),
-          CurrentSavings: this._systems[i].GetCurrentSavings(this.RealImportBalance, this.RealExportBalance),
-          PotentialSavings: this._systems[i].GetPotentialSavings(this.RealImportBalance, this.RealExportBalance),
-          YearlySavings: this._systems[i].GetYearlySavings(this.DaysOfData, this.RealImportBalance, this.RealExportBalance),
-          EndStatus: this._systems[i].GetStatus()
-        })
+        systemResults.push(this._systems[i].GetCalculationResults(this.DaysOfData, realCost))
       }
 
       observer.next({

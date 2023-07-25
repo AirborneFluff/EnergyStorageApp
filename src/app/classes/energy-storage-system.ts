@@ -3,6 +3,7 @@ import {EnergyMeter} from "./energy-meter";
 import {StorageSystemParameters} from "../models/storage-system-parameters";
 import {Battery} from "./battery";
 import {StorageSystemStatus} from "../models/storage-system-status";
+import {StorageSystemResults} from "../models/storage-system-results";
 
 export class EnergyStorageSystem {
   private inverter!: Inverter;
@@ -27,26 +28,42 @@ export class EnergyStorageSystem {
     //return this.GetStatus();
   }
 
-  public GetPaybackYears(appliedDays: number, realImportBalance: number, realExportBalance: number): number {
-    return this.price / this.GetYearlySavings(appliedDays, realImportBalance, realExportBalance);
+  private GetPaybackYears(appliedDays: number, realCost: number): number {
+    return this.price / this.GetYearlySavings(appliedDays, realCost);
   }
-  public GetYearlySavings(appliedDays: number, realImportBalance: number, realExportBalance: number) {
-    const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
+  private GetYearlySavings(appliedDays: number, realCost: number) {
+    const currentSavings = this.GetCurrentSavings(realCost);
     return (365/appliedDays) * currentSavings;
   }
-
-  public GetCurrentSavings(realImportBalance: number, realExportBalance: number): number {
-    const realCost = realImportBalance - realExportBalance;
+  private GetCurrentSavings(realCost: number): number {
     const virtualCost = this.energy_meter.ImportBalance - this.energy_meter.ExportBalance;
     return realCost - virtualCost;
   }
-
-  public GetPotentialSavings(realImportBalance: number, realExportBalance: number): number {
+  private GetPotentialSavings(realCost: number): number {
     // const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
     // const batteryHealth = this.inverter.GetBattery().Health;
 
-    const currentSavings = this.GetCurrentSavings(realImportBalance, realExportBalance);
+    const currentSavings = this.GetCurrentSavings(realCost);
     return currentSavings / this.inverter.GetBattery().CurrentCycleUsage;
+  }
+  private GetRemainingLifespanYear(appliedDays: number): number {
+    const currentYearsApplied = appliedDays/365;
+    const cyclesPerYear = this.inverter.GetBattery().CyclesUsed / currentYearsApplied;
+    return this.inverter.GetBattery().RemainingCycles / cyclesPerYear;
+  }
+
+  public GetCalculationResults(appliedDays: number, realCost: number): StorageSystemResults {
+    return {
+      Name: this.name,
+      Price: this.price,
+      Supplier: this.supplier,
+      EndStatus: this.GetStatus(),
+      CurrentSavings: this.GetCurrentSavings(realCost),
+      RemainingLifespanYears: this.GetRemainingLifespanYear(appliedDays),
+      PaybackYears: this.GetPaybackYears(appliedDays, realCost),
+      PotentialSavings: this.GetPotentialSavings(realCost),
+      YearlySavings: this.GetYearlySavings(appliedDays, realCost)
+    }
   }
 
   public GetStatus(): StorageSystemStatus {
@@ -55,6 +72,7 @@ export class EnergyStorageSystem {
       BatteryHealth: this.inverter.GetBattery().Health,
       BatteryRemainingCycles: this.inverter.GetBattery().RemainingCycles,
       BatteryUsableCapacity: this.inverter.GetBattery().UsableCapacity,
+      TotalStoredEnergy: this.inverter.GetBattery().TotalEnergyStored,
       ExportBalance: this.energy_meter.ExportBalance,
       ExportReading: this.energy_meter.NetExport,
       ImportBalance: this.energy_meter.ImportBalance,

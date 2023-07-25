@@ -7,8 +7,8 @@
   </nav>
 
   <section>
-    <h1 class="my-5">You uploaded {{results.DaysCalculated}} days worth of data. Here’s the facts:</h1>
-    <div class="chart-container">
+<!--    <h1 class="my-sm-3 my-md-5">You uploaded {{results.DaysCalculated}} days worth of data. Here’s the facts:</h1>-->
+    <div class="chart-container my-sm-3 my-md-5 px-sm-5">
       <canvas *ngIf="currentSystem"
               baseChart
               class="chart"
@@ -20,6 +20,15 @@
         <span class="doughnut-center-text-lg">£{{currentSystem.YearlySavings.toFixed()}}</span>
         <span class="doughnut-center-text-sm">saved / year</span>
       </div>
+    </div>
+
+    <div class="fact-container mx-sm-3">
+      <ul>
+        <li class="fact-item">You would have saved <strong>£{{currentSavings}}</strong>, that's <strong>{{energyStored}} kWh</strong> of energy stored</li>
+        <li class="fact-item">Your batteries are on track to last another <strong>{{remainingLifespan}} years</strong>, that’s another <strong>£{{remainingSavings}}</strong> of savings</li>
+        <li class="fact-item">Of your total <strong>{{paybackYears}} years</strong> payback period, you only have another <strong>{{remainingPaybackYears}} years</strong> left </li>
+        <li class="fact-item">The lifetime savings (minus cost) of your batteries will be over <strong>£{{totalSavings}}</strong></li>
+      </ul>
     </div>
   </section>
 </div>
